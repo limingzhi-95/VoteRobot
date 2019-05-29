@@ -22,20 +22,35 @@ def getRandomString(id_length):
 def voteOnce():
     # conn = http.client.HTTPConnection("cone.sngzzc.com")
 
-    headers = {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16A366 MicroMessenger/7.0.0(0x17000024) NetType/WIFI Language/zh_CN',
-               "Cookie": "Hm_lpvt_08c6f5e17c0761a968c5658ccf6ff5ad={0}; Hm_lvt_08c6f5e17c0761a968c5658ccf6ff5ad={0}; PHPSESSID=794dd1b7df17ed62466a286869ae2d59".format(int(time.time())),
-               "Referer": "http://cone.sngzzc.com/app/index.php?i=10&c=entry&id=98518&rid=321812&do=view&m=tyzm_diamondvote&from=singlemessage&isappinstalled=0&wxref=mp.weixin.qq.com&wxref=mp.weixin.qq.com",
-               "Host": "cone.sngzzc.com",
-               "Origin": "http://cone.sngzzc.com",
-               "X-Requested-With": "XMLHttpRequest"}
+    headers = {
+        'Host': "cone.sngzzc.com",
+        'Connection': "keep-alive",
+        'Content-Length': "31",
+        'Accept': "application/json, text/javascript, */*; q=0.01",
+        'Origin': "http://cone.sngzzc.com/",
+        'X-Requested-With': "XMLHttpRequest",
+        'User-Agent': "Mozilla/5.0 (Linux; Android 9; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044704 Mobile Safari/537.36 MMWEBID/7979 MicroMessenger/7.0.4.1420(0x2700043B) Process/tools NetType/WIFI Language/zh_CN",
+        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+        'Referer': "http://cone.sngzzc.com/app/index.php?i=10&c=entry&id=98518&rid=321812&do=view&m=tyzm_diamondvote&from=singlemessage,https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx79dfbd36ddd5b765&redirect_uri=http%3A%2F%2Fcone.sngzzc.com%2Fapp%2Findex.php%3Fi%3D10%26c%3Dauth%26a%3Doauth%26scope%3Dsnsapi_base&response_type=code&scope=snsapi_base&state=we7sid-7fa4219be5968e8a163d1b5499fcdced#wechat_redirect",
+        'Accept-Encoding': "gzip, deflate",
+        'Accept-Language': "zh-CN,en-US;q=0.9",
+        'Cookie': "PHPSESSID=04467c5f03501a0874a243d0d635e537;Hm_lvt_08c6f5e17c0761a968c5658ccf6ff5ad={0};Hm_lpvt_08c6f5e17c0761a968c5658ccf6ff5ad={0}".format(str(int(time.time()))),
+        'Cache-Control': "no-cache",
+    }
+    print(headers)
     postParams = json.dumps({"latitude": 0, "longitude": 0, "verify": 0})
+    body = {
+        "latitude": 0,
+        "longitude": 0,
+        "verify": 0
+    }
     # cookie = {"Hm_lpvt_08c6f5e17c0761a968c5658ccf6ff5ad": int(time.time()), "Hm_lvt_08c6f5e17c0761a968c5658ccf6ff5ad": int(time.time()), "PHPSESSID": "dd1f82b306d81dfa01d511f7d694a543"}
     # conn.request("POST", "http://cone.sngzzc.com/app/index.php?i=10&c=entry&rid=321812&id=98518&do=vote&m=tyzm_diamondvote", postParams, headers)
-    r = requests.post("http://cone.sngzzc.com/app/index.php?i=10&c=entry&rid=321812&id=98518&do=vote&m=tyzm_diamondvote", data=postParams, headers=headers)
+    r = requests.post("http://cone.sngzzc.com/app/index.php?i=10&c=entry&rid=321812&id=98518&do=vote&m=tyzm_diamondvote", headers=headers, data="latitude=0&longitude=0&verify=0")
     print(r.text)
     print(r.headers)
     print(r.content)
-    # print(r.json())
+    print(r.url)
     r.close()
     # print(conn.getresponse().msg)
     # conn.close()
